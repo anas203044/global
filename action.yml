@@ -1,0 +1,29 @@
+name: Build and Analyze with SonarQube
+description: Builds and analyzes a project using SonarQube
+
+inputs:
+  sonar-token:
+    description: SonarQube token for authentication
+    required: true
+  sonar-host-url:
+    description: URL of the SonarQube instance
+    required: true
+  sonar-project-key:
+    description: Project key for the project being analyzed
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Create SonarQube project
+      run: |
+        curl --include --request POST -u ${{ inputs.sonar-token }}: '${{ inputs.sonar-host-url }}/api/projects/create?name=${{ inputs.sonar-project-key }}&project=${{ inputs.sonar-project-key }}'
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Create SonarQube properties file
+      run: echo "sonar.projectKey=${{ inputs.sonar-project-key }}" > sonar-project.properties
+    - uses: sonarsource/sonarqube-scan-action@master
+      with:
+        sonar-token: ${{ inputs.sonar-token }}
+        sonar-host-url: ${{ inputs.sonar-host-url }}
