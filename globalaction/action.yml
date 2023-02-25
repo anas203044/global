@@ -13,10 +13,10 @@ inputs:
     required: true
 
 runs:
-  shell: bash
   using: "composite"
   steps:
     - name: Create SonarQube project
+      shell: bash
       run: |
         curl --include --request POST -u ${{ inputs.sonar-token }}: '${{ inputs.sonar-host-url }}/api/projects/create?name=${{ inputs.sonar-project-key }}&project=${{ inputs.sonar-project-key }}'
     - uses: actions/checkout@v2
