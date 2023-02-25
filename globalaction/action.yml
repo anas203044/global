@@ -27,3 +27,4 @@ runs:
       with:
         sonar-token: ${{ inputs.sonar-token }}
         sonar-host-url: ${{ inputs.sonar-host-url }}
+
