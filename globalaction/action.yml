@@ -19,6 +19,8 @@ runs:
       shell: bash
       run: |
         echo ${{ inputs.sonar-token }}
+        echo ${{ inputs.sonar-host-url }}
+        echo ${{ inputs.sonar-project-key }}
         curl --include --request POST -u ${{ inputs.sonar-token }}: '${{ inputs.sonar-host-url }}/api/projects/create?name=${{ inputs.sonar-project-key }}&project=${{ inputs.sonar-project-key }}'
     - uses: actions/checkout@v2
       with:
