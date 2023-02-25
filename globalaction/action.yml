@@ -13,6 +13,7 @@ inputs:
     required: true
 
 runs:
+  shell: bash
   using: "composite"
   steps:
     - name: Create SonarQube project
