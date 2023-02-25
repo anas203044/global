@@ -17,7 +17,7 @@ runs:
       shell: bash
       run: echo "Repository Name:${{ env.REPO_NAME }}"
     - name: Create SonarQube project
-      shel: bash
+      shell: bash
       run: |
         curl --include --request POST -u ${{ inputs.sonar-token }}: '${{ inputs.sonar-host-url }}/api/projects/create?name=${{ env.REPO_NAME }}&project=${{ env.REPO_NAME }}'
     - uses: actions/checkout@v2
