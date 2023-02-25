@@ -23,6 +23,7 @@ runs:
       with:
         fetch-depth: 0
     - name: Create SonarQube properties file
+      shell: bash
       run: echo "sonar.projectKey=${{ inputs.sonar-project-key }}" > sonar-project.properties
     - uses: sonarsource/sonarqube-scan-action@master
       with:
