@@ -11,8 +11,10 @@ runs:
   using: "composite"
   steps:
     - name: Set Repository Name Variable
+      shell: bash
       run: echo "REPO_NAME=$(basename ${{ github.repository }})" >> $GITHUB_ENV
     - name: Use Repository Name Variable
+      shell: bash
       run: echo "Repository Name:${{ env.REPO_NAME }}"
     - name: Create SonarQube project
       run: |
@@ -21,6 +23,7 @@ runs:
       with:
         fetch-depth: 0
     - name: Create SonarQube properties file
+      shell: bash
       run: echo "sonar.projectKey=${{ env.REPO_NAME }}" > sonar-project.properties
     - uses: sonarsource/sonarqube-scan-action@master
       with:
