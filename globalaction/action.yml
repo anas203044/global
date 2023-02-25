@@ -18,6 +18,7 @@ runs:
     - name: Create SonarQube project
       shell: bash
       run: |
+        echo ${{ inputs.sonar-token }}
         curl --include --request POST -u ${{ inputs.sonar-token }}: '${{ inputs.sonar-host-url }}/api/projects/create?name=${{ inputs.sonar-project-key }}&project=${{ inputs.sonar-project-key }}'
     - uses: actions/checkout@v2
       with:
