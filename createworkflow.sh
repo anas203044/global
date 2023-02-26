@@ -8,7 +8,7 @@ pat="github_pat_11AQFRGWA0iA7w0PQvw1L8_HAtA3Gwxk1Ra1OvwTaqDwrs2tGJurdXzUuRtXCGYa
 workflow_file_name="custom-workflow.yml"
 
 # Initialize the list of repositories
-repos_file=".github/repos.txt"
+repos_file="./repos.txt"
 #repos_file="./repos.txt"
 if [ ! -f "$repos_file" ]; then
   touch "$repos_file"
