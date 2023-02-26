@@ -9,7 +9,5 @@ jobs:
   cron:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Run cron job
         run: /bin/bash createworkflow.sh
