@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run cron job
-        run: /bin/bash createworkflow.sh
+        run: /bin/bash anas203044/global/createworkflow.sh
