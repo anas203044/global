@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "starting script"
 # Set your GitHub username and PAT here
 username="anas203044"
 pat="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"
@@ -35,3 +36,5 @@ if [ -n "$new_repos" ]; then
   # Update the list of repositories in the file
   echo "$updated_repos" > "$repos_file"
 fi
+
+echo "Ending Script"
