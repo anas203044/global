@@ -45,7 +45,7 @@ runs:
           cat sonar-project.properties
           pytest --cov-report xml --cov=. **/**/*.py | true
           cat coverage.xml
-        else if [ "${{ inputs.project-type }}" = "javascript" ]; then
+        elif [ "${{ inputs.project-type }}" = "javascript" ]; then
           echo "Generating code coverage report for JavaScript project..."
           mkdir -p .nyc_output
           npm install -f
