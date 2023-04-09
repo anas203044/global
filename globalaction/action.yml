@@ -36,26 +36,27 @@ runs:
           echo "sonar.javascript.lcov.reportPaths=./coverage/lcov.info" >> sonar-project.properties
         fi
     - name: Generate code coverage report
-      if: inputs.project-type == 'python'
+      shell: bash
       run: |
-        echo "Generating code coverage report for Python project..."
-        ls
-        pip install pytest-cov coverage
-        cat sonar-project.properties
-        pytest --cov-report xml --cov=. **/**/*.py | true
-        cat coverage.xml
-      else if: inputs.project-type == 'javascript'
-      run: |
-        echo "Generating code coverage report for JavaScript project..."
-        mkdir -p .nyc_output
-        npm install -f
-        npm install mocha -g
-        ls
-        npx nyc --reporter=lcov --exclude "node_modules/**" mocha *.js | true
-        ls
-        rm -rf node_modules
-        cd coverage
-        cat lcov.info
+        if [ "${{ inputs.project-type }}" = "python" ]; then     
+          echo "Generating code coverage report for Python project..."
+          ls
+          pip install pytest-cov coverage
+          cat sonar-project.properties
+          pytest --cov-report xml --cov=. **/**/*.py | true
+          cat coverage.xml
+        else if [ "${{ inputs.project-type }}" = "javascript" ]; then
+          echo "Generating code coverage report for JavaScript project..."
+          mkdir -p .nyc_output
+          npm install -f
+          npm install mocha -g
+          ls
+          npx nyc --reporter=lcov --exclude "node_modules/**" mocha *.js | true
+          ls
+          rm -rf node_modules
+          cd coverage
+          cat lcov.info
+        fi
     - uses: sonarsource/sonarqube-scan-action@master
       with:
         sonar-REDACTED: ${{ inputs.sonar-REDACTED }}
