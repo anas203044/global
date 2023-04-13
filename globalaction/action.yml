@@ -26,15 +26,7 @@ runs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: Create SonarQube properties file
-      shell: bash
-      run: |
-        echo "sonar.projectKey=${{ env.REPO_NAME }}" > sonar-project.properties
-        if [ "${{ inputs.project-type }}" = "Python" ]; then
-          echo "sonar.python.coverage.reportPaths=./coverage.xml" >> sonar-project.properties
-        else
-          echo "sonar.javascript.lcov.reportPaths=./coverage/lcov.info" >> sonar-project.properties
-        fi
+
     
     - uses: sonarsource/sonarqube-scan-action@master
       with:
